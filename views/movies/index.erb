@@ -1,0 +1,35 @@
+<h1>Movies</h1>
+<form method="get" action="/movies">
+  Sort by:
+  <input type="radio" id="name" name="order" value="name" />
+  <label for="name">Name: </label>
+  <input type="radio" id="year" name="order" value="year" />
+  <label for="year">Year: </label>
+  <input type="radio" id="rating" name="order" value="rating" />
+  <label for="rating">Rating: </label>
+  <button type="submit">Sort</button>
+</form>
+<ul>
+  <% @movies.each do |movie| %>
+    <li>
+      <a href="/movies/<%= movie["id"] %>">
+        <%= movie["title"] %>
+      </a>
+    </li>
+      <ul>
+        <li>
+          Year: <%= movie["year"] %>
+        </li>
+        <li>
+          Rating <%= movie["rating"] %>
+        </li>
+        <li>
+          Genre: <%= movie["genre"]%>
+        </li>
+        <li>
+          Studio: <%= movie["studio"] %>
+        </li>
+      </ul>
+      <br  />
+  <% end %>
+</ul>
