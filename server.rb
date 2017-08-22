@@ -74,19 +74,3 @@ get '/movies/:id' do
 
   erb :'movies/show'
 end
-
-get '/movies?order=year' do
-
-
-  erb :'movies/index'
-end
-
-get '/movies?order=rating' do
-  @movies = db_connection { |conn| conn.exec(
-    "SELECT movies.id, movies.title, movies.year, movies.rating, studios.name AS studio, genres.name AS genre FROM movies
-    JOIN genres ON movies.genre_id = genres.id
-    JOIN studios ON movies.studio_id = studios.id
-    ORDER BY movies.rating")}
-
-  erb :'movies/index'
-end
